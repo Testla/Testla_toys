@@ -1,5 +1,8 @@
 #include "Xor_Linked_List.h"
 
+Xor_Linked_List::node::node(int init_data, node* init_adjacent)
+: data(init_data), adjacent(init_adjacent) {}
+
 Xor_Linked_List::Xor_Linked_List() {
     head = 0;
     tail = 0;
@@ -110,7 +113,7 @@ void Xor_Linked_List::operator= (const Xor_Linked_List &other) {
 
 std::ostream& operator<<(std::ostream &out, const Xor_Linked_List &list) {
     if (list.empty() == true) {
-        std::cout << "empty list" << std::endl;
+        out << "empty list" << std::endl;
     } else {
         Xor_Linked_List::node *last = 0, *now = list.head, *temp;
         while (now != 0) {
@@ -123,5 +126,71 @@ std::ostream& operator<<(std::ostream &out, const Xor_Linked_List &list) {
         }
     }
     return out;
+}
+
+/*------------------------------*/
+
+Xor_Linked_List::iterator::iterator() {
+    current = 0;
+    last = 0;
+}
+
+int& Xor_Linked_List::iterator::operator* () {
+    return current->data;
+}
+
+Xor_Linked_List::iterator& Xor_Linked_List::iterator::operator++() {
+    /*do nothing if it's the end*/
+    if (current == 0)
+        return *this;
+    node* temp = current;
+    current = reinterpret_cast<Xor_Linked_List::node*>(
+    reinterpret_cast<uintptr_t>(current->adjacent)
+    ^ reinterpret_cast<uintptr_t>(last));
+    last = temp;
+    return *this;
+}
+
+Xor_Linked_List::iterator& Xor_Linked_List::iterator::operator--() {
+    /*do nothing if it's the begining*/
+    if (last == 0)
+        return *this;
+    node* temp = current;
+    current = last;
+    last = reinterpret_cast<Xor_Linked_List::node*>(
+    reinterpret_cast<uintptr_t>(current->adjacent)
+    ^ reinterpret_cast<uintptr_t>(temp));
+    return *this;
+}
+
+Xor_Linked_List::iterator Xor_Linked_List::iterator::operator++(int) {
+    Xor_Linked_List::iterator temp(*this);
+    ++*this;
+    return temp;
+}
+
+Xor_Linked_List::iterator Xor_Linked_List::iterator::operator--(int) {
+    Xor_Linked_List::iterator temp(*this);
+    --*this;
+    return temp;
+}
+
+bool Xor_Linked_List::iterator::operator==(const Xor_Linked_List::iterator& other) {
+    return (current == other.current && last == other.last);
+}
+
+bool Xor_Linked_List::iterator::operator!=(const Xor_Linked_List::iterator& other) {
+    return (current != other.current || last != other.last);
+}
+
+Xor_Linked_List::iterator::iterator(node* init_last, node* init_current)
+: last(init_last), current(init_current) {}
+
+Xor_Linked_List::iterator Xor_Linked_List::begin() {
+    return Xor_Linked_List::iterator(0, head);
+}
+
+Xor_Linked_List::iterator Xor_Linked_List::end() {
+    return Xor_Linked_List::iterator(tail, 0);
 }
 

@@ -42,6 +42,32 @@ int main() {
     list2 = list1;
     cout << list2;
     /*empty list*/
+    
+    /*------------ iterator test ------------*/
+    if (list1.begin() != list1.end())  /*when a list is empty, begin == end*/
+        cout << "this line should not appear" << endl;
+    list1.push_back(1);
+    list1.push_back(2);
+    list1.push_back(3);
+    list1.push_back(4);
+    list1.push_back(5);
+    Xor_Linked_List::iterator it;
+    for (it = list1.begin(); it != list1.end(); ++it)
+        ++*it;
+    for (it = list1.begin(); it != list1.end(); it++)
+        *it += 2;
+    cout << list1;
+
+    for (it = list1.end(); it != list1.begin();) {
+        it--;
+        ++*it;
+    }
+    for (it = list1.end(); it != list1.begin();) {
+        --it;
+        *it += 2;
+    }
+    cout << list1;
+    
     return 0;
 }
 
