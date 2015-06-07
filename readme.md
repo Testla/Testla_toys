@@ -1,1 +1,1 @@
-These are things I wrote during my spare time.
+Really toys. Currently simple, naive, undocumented and buggy. To be improved.
