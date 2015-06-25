@@ -1,6 +1,6 @@
 /* include guard */
-#ifndef PQ_PROBLEM_SOLVER_H
-#define PQ_PROBLEM_SOLVER_H
+#ifndef IMPOSSIBLE_PUZZLE_SOLVER_H
+#define IMPOSSIBLE_PUZZLE_SOLVER_H
 
 #include <set>
 #include <map>
@@ -26,14 +26,14 @@ struct perspective_t {
     perspective_t(line_identifier_t (*get_line_indetifier_)(const solution_t&)) : get_line_identifier(get_line_indetifier_) {}
 };
 
-class PQ_problem_solver {
+class Impossible_Puzzle_solver {
 
 private:
     vector<perspective_t> perspectives;
     set<solution_t> all_solutions;
 
 public:
-    explicit PQ_problem_solver(
+    explicit Impossible_Puzzle_solver(
         const vector<solution_t>& solution_space,
         const vector<line_identifier_t (*)(const solution_t&)> &get_line_indetifier_
     );
@@ -44,5 +44,5 @@ public:
     void show_perspective(int x, bool knows);
 };
 
-#endif  /* PQ_PROBLEM_SOLVER_H */
+#endif  /* Impossible_Puzzle_SOLVER_H */
 

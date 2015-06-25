@@ -2,7 +2,7 @@
 #include <utility>
 #include <vector>
 #include <functional>
-#include "PQ_problem_solver.h"
+#include "Impossible_Puzzle_solver.h"
 
 int plus(const pair<int, int> &x) {
     return x.first + x.second;
@@ -21,7 +21,7 @@ int main(void) {
             solution_space.push_back(std::make_pair(a, b));
     get_line_indetifiers.push_back(plus);
     get_line_indetifiers.push_back(multiplies);
-    PQ_problem_solver solver(solution_space, get_line_indetifiers);
+    Impossible_Puzzle_solver solver(solution_space, get_line_indetifiers);
     solver.X_knows_that_Y(0, 1, false);
     solver.X(0, false);
     solver.X(1, true);

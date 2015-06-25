@@ -1,7 +1,7 @@
 #include <iostream>
-#include "PQ_problem_solver.h"
+#include "Impossible_Puzzle_solver.h"
 
-PQ_problem_solver::PQ_problem_solver(
+Impossible_Puzzle_solver::Impossible_Puzzle_solver(
     const vector<solution_t> &solution_space,
     const vector<line_identifier_t (*)(const solution_t&)> &get_line_indetifiers
 ) {
@@ -21,12 +21,12 @@ PQ_problem_solver::PQ_problem_solver(
     }
 }
 
-void PQ_problem_solver::print_all_remaining_solution() {
+void Impossible_Puzzle_solver::print_all_remaining_solution() {
     for (set<solution_t>::iterator solution = all_solutions.begin(); solution != all_solutions.end(); ++solution)
         std::cout << solution->first << ", " << solution->second << std::endl;
 }
 
-void PQ_problem_solver::X(int x, bool knows) {
+void Impossible_Puzzle_solver::X(int x, bool knows) {
     map<line_identifier_t, line_t>::iterator line_it;
     line_t::iterator solution;
     /* delete mustn't be done immediately */
@@ -52,7 +52,7 @@ void PQ_problem_solver::X(int x, bool knows) {
 }
 
 /* all solutions in X's line is single line in Y */
-void PQ_problem_solver::X_knows_that_Y(int x, int y, bool knows) {
+void Impossible_Puzzle_solver::X_knows_that_Y(int x, int y, bool knows) {
     perspective_t &target_perspective = perspectives[y];
     map<line_identifier_t, line_t>::iterator line_it;
     line_t::iterator solution;
@@ -83,7 +83,7 @@ void PQ_problem_solver::X_knows_that_Y(int x, int y, bool knows) {
     }
 }
 
-void PQ_problem_solver::show_perspective(int x) {
+void Impossible_Puzzle_solver::show_perspective(int x) {
     map<line_identifier_t, line_t>::iterator line_it;
     line_t::iterator solution;
     for (line_it = perspectives[x].lines.begin(); line_it != perspectives[x].lines.end(); ++line_it) {
@@ -94,7 +94,7 @@ void PQ_problem_solver::show_perspective(int x) {
     }
 }
 
-void PQ_problem_solver::show_perspective(int x, bool knows) {
+void Impossible_Puzzle_solver::show_perspective(int x, bool knows) {
     map<line_identifier_t, line_t>::iterator line_it;
     line_t::iterator solution;
     for (line_it = perspectives[x].lines.begin(); line_it != perspectives[x].lines.end(); ++line_it) {
