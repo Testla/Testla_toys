@@ -1,1 +1,1 @@
-A simple program to generate a [De Bruijn sequence](http://en.wikipedia.org/wiki/De_Bruijn_sequence).  
+A simple program to generate a lexicographical smallest [De Bruijn sequence](http://en.wikipedia.org/wiki/De_Bruijn_sequence) with given alphabet and subsequence length using Hierholzer's algorithm to find [Eulerian path](https://en.wikipedia.org/wiki/Eulerian_path).  
