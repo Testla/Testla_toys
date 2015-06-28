@@ -32,6 +32,11 @@ int main() {
     puts("Input subsequence length: ");
     scanf("%d", &sub_length);
 
+    /* special case : string on vertex would be empty*/
+    if (sub_length == 1) {
+        puts(alphabet);
+        return 0;
+    }
     alphabet_size = strlen(alphabet);
     num_vertice = power(alphabet_size, sub_length - 1);
     state = (int *)malloc(num_vertice * sizeof(*state)); 
